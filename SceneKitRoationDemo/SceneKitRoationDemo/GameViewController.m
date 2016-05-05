@@ -20,10 +20,10 @@
     // create and add a camera to the scene
     SCNNode *cameraNode = [SCNNode node];
     cameraNode.camera = [SCNCamera camera];
-//    [scene.rootNode addChildNode:cameraNode];
+    [scene.rootNode addChildNode:cameraNode];
     
     // place the camera
-//    cameraNode.position = SCNVector3Make(0, 0, 15);
+    cameraNode.position = SCNVector3Make(0, 0, 15);
     
     // create and add a light to the scene
     SCNNode *lightNode = [SCNNode node];
