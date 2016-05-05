@@ -1,0 +1,32 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "AD59D4D79CC1F326F29267A08D65FFB55DEEBAA5",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+    "71518c34-a9e4-427a-8b21-45df21dd269a++5326" : {
+
+    }
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "71518c34-a9e4-427a-8b21-45df21dd269a++5326" : 0,
+    "AD59D4D79CC1F326F29267A08D65FFB55DEEBAA5" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "BBA49581-A1FC-4DA6-9125-B935D9776BBE",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "71518c34-a9e4-427a-8b21-45df21dd269a++5326" : "",
+    "AD59D4D79CC1F326F29267A08D65FFB55DEEBAA5" : "SceneKitRoationDemo\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "SceneKitRoationDemo",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "SceneKitRoationDemo\/SceneKitRoationDemo.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "http:\/\/svn.og.com:8090\/rzdj",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Subversion",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "71518c34-a9e4-427a-8b21-45df21dd269a++5326"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/pzhtpf\/SceneKitRoationDemo.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "AD59D4D79CC1F326F29267A08D65FFB55DEEBAA5"
+    }
+  ]
+}
