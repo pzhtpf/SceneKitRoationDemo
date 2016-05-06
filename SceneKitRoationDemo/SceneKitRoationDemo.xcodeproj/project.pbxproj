@@ -14,6 +14,7 @@
 		BA861AD21CDB5380009C0EBC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BA861AD01CDB5380009C0EBC /* Main.storyboard */; };
 		BA861AD41CDB5380009C0EBC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BA861AD31CDB5380009C0EBC /* Assets.xcassets */; };
 		BA861AD71CDB5380009C0EBC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BA861AD51CDB5380009C0EBC /* LaunchScreen.storyboard */; };
+		BAA2FF571CDC4BC60004E1B6 /* TableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BAA2FF561CDC4BC60004E1B6 /* TableViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,8 @@
 		BA861AD31CDB5380009C0EBC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BA861AD61CDB5380009C0EBC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BA861AD81CDB5380009C0EBC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BAA2FF551CDC4BC60004E1B6 /* TableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewController.h; sourceTree = "<group>"; };
+		BAA2FF561CDC4BC60004E1B6 /* TableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +68,8 @@
 				BA861ACB1CDB5380009C0EBC /* art.scnassets */,
 				BA861ACD1CDB5380009C0EBC /* GameViewController.h */,
 				BA861ACE1CDB5380009C0EBC /* GameViewController.m */,
+				BAA2FF551CDC4BC60004E1B6 /* TableViewController.h */,
+				BAA2FF561CDC4BC60004E1B6 /* TableViewController.m */,
 				BA861AD01CDB5380009C0EBC /* Main.storyboard */,
 				BA861AD31CDB5380009C0EBC /* Assets.xcassets */,
 				BA861AD51CDB5380009C0EBC /* LaunchScreen.storyboard */,
@@ -156,6 +161,7 @@
 				BA861ACA1CDB5380009C0EBC /* AppDelegate.m in Sources */,
 				BA861ACF1CDB5380009C0EBC /* GameViewController.m in Sources */,
 				BA861AC71CDB5380009C0EBC /* main.m in Sources */,
+				BAA2FF571CDC4BC60004E1B6 /* TableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -306,6 +312,7 @@
 				BA861ADD1CDB5380009C0EBC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
