@@ -5,10 +5,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Table View Controller-->
         <scene sceneID="Qtm-JV-KFn">
             <objects>
-                <viewController id="ZeL-LI-rye" sceneMemberID="viewController">
+                <viewController id="ZeL-LI-rye" customClass="TableViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="EN4-LW-fDi">
                         <rect key="frame" x="0.0" y="0.0" width="736" height="414"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -24,6 +24,7 @@
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                     <connections>
+                        <outlet property="tableView" destination="PRb-DO-0Ge" id="rk9-sh-nhN"/>
                         <segue destination="BV1-FR-VrT" kind="modal" identifier="goToGame" id="iob-Fe-jmL"/>
                     </connections>
                 </viewController>
