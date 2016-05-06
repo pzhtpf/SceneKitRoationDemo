@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <SceneKit/SceneKit.h>
+#import <QuartzCore/QuartzCore.h>
 
 @interface GameViewController : UIViewController
 
