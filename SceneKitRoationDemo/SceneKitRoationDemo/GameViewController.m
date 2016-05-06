@@ -68,6 +68,13 @@
     scnView.gestureRecognizers = gestureRecognizers;
 }
 
+-(void)initNode{
+
+    
+
+
+}
+
 - (void) handleTap:(UIGestureRecognizer*)gestureRecognize
 {
     // retrieve the SCNView

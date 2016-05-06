@@ -10,4 +10,7 @@
 #import <SceneKit/SceneKit.h>
 
 @interface GameViewController : UIViewController
+
+@property(nonatomic)int type;
+
 @end
