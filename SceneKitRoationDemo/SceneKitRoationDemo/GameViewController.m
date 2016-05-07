@@ -87,16 +87,13 @@
     _earthGroupNode = [SCNNode new];
     
     _sunNode.geometry = [SCNSphere sphereWithRadius:2.5];
-    _earthNode.geometry = [SCNSphere sphereWithRadius:1.5];
+    _earthNode.geometry = [SCNSphere sphereWithRadius:1.0];
     _moonNode.geometry = [SCNSphere sphereWithRadius:0.5];
     
     _moonNode.position = SCNVector3Make(3, 0, 0);
-//    [_earthGroupNode addChildNode:_moonNode];
     [_earthGroupNode addChildNode:_earthNode];
     
     _earthGroupNode.position = SCNVector3Make(10, 0, 0);
-    
-//    [_sunNode addChildNode:_earthGroupNode];
     
     [_scnView.scene.rootNode addChildNode:_sunNode];
 
@@ -133,21 +130,12 @@
 
     [_earthNode runAction:[SCNAction repeatActionForever:[SCNAction rotateByX:0 y:2 z:0 duration:1]]];   //地球自转
 
-    
-    // Earth-rotation (center of rotation of the Earth around the Sun)
-    SCNNode *earthRotationNode = [SCNNode node];
-    [_sunNode addChildNode:earthRotationNode];
-    
-    // Earth-group (will contain the Earth, and the Moon)
-    [earthRotationNode addChildNode:_earthGroupNode];
-    
-    // Rotate the Earth around the Sun
-    CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"rotation"];
-    animation.duration = 10.0;
+    // Rotate the moon
+    CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"rotation"];        //月球自转
+    animation.duration = 1.5;
     animation.toValue = [NSValue valueWithSCNVector4:SCNVector4Make(0, 1, 0, M_PI * 2)];
     animation.repeatCount = FLT_MAX;
-    [earthRotationNode addAnimation:animation forKey:@"earth rotation around sun"];
-    
+    [_moonNode addAnimation:animation forKey:@"moon rotation"];
     
     
     // Moon-rotation (center of rotation of the Moon around the Earth)
@@ -164,12 +152,30 @@
     
     [_earthGroupNode addChildNode:moonRotationNode];
     
-    // Rotate the moon
-    animation = [CABasicAnimation animationWithKeyPath:@"rotation"];
-    animation.duration = 1.5;
-    animation.toValue = [NSValue valueWithSCNVector4:SCNVector4Make(0, 1, 0, M_PI * 2)];
-    animation.repeatCount = FLT_MAX;
-    [_moonNode addAnimation:animation forKey:@"moon rotation"];
+    
+    if(_type==0){    //  normal Roation
+    
+        // Earth-rotation (center of rotation of the Earth around the Sun)
+        SCNNode *earthRotationNode = [SCNNode node];
+        [_sunNode addChildNode:earthRotationNode];
+        
+        // Earth-group (will contain the Earth, and the Moon)
+        [earthRotationNode addChildNode:_earthGroupNode];
+        
+        // Rotate the Earth around the Sun
+        animation = [CABasicAnimation animationWithKeyPath:@"rotation"];
+        animation.duration = 10.0;
+        animation.toValue = [NSValue valueWithSCNVector4:SCNVector4Make(0, 1, 0, M_PI * 2)];
+        animation.repeatCount = FLT_MAX;
+        [earthRotationNode addAnimation:animation forKey:@"earth rotation around sun"];
+        
+    }
+    else{   // math roation
+        
+        [_sunNode addChildNode:_earthGroupNode];
+        [self mathRoation];
+    }
+    
     
     [self addAnimationToSun];
 }
@@ -190,6 +196,44 @@
     animation.repeatCount = FLT_MAX;
     [_sunNode.geometry.firstMaterial.multiply addAnimation:animation forKey:@"sun-texture2"];
 
+}
+-(void)mathRoation{
+
+    // 数学方法：
+    
+    
+    // custom Action
+    
+    float totalDuration = 10.0f;        //10s 围绕地球转一圈
+    float duration = totalDuration/360;
+    
+    
+    SCNAction *customAction = [SCNAction customActionWithDuration:duration actionBlock:^(SCNNode * _Nonnull node, CGFloat elapsedTime){
+    
+        
+        if(elapsedTime==duration){
+        
+            
+            SCNVector3 position = node.position;
+            
+            float rx0 = 0;    //原点为0
+            float ry0 = 0;
+            
+            float angle = 1.0f/180*M_PI;
+            
+            float x =  (position.x - rx0)*cos(angle) - (position.z - ry0)*sin(angle) + rx0 ;
+            
+            float z = (position.x - rx0)*sin(angle) + (position.z - ry0)*cos(angle) + ry0 ;
+            
+            node.position = SCNVector3Make(x, node.position.y, z);
+       
+        }
+    
+    }];
+
+    SCNAction *repeatAction = [SCNAction repeatActionForever:customAction];
+    
+    [_earthGroupNode runAction:repeatAction];
 }
 -(void)addLight{
 
