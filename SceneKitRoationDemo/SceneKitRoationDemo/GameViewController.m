@@ -199,13 +199,16 @@
 }
 -(void)mathRoation{
 
-    // 数学方法：
+    // 相关数学知识点： 任意点a(x,y)，绕一个坐标点b(rx0,ry0)逆时针旋转a角度后的新的坐标设为c(x0, y0)，有公式：
     
+//    x0= (x - rx0)*cos(a) - (y - ry0)*sin(a) + rx0 ;
+//    
+//    y0= (x - rx0)*sin(a) + (y - ry0)*cos(a) + ry0 ;
     
     // custom Action
     
     float totalDuration = 10.0f;        //10s 围绕地球转一圈
-    float duration = totalDuration/360;
+    float duration = totalDuration/360;  //每隔duration秒去执行一次
     
     
     SCNAction *customAction = [SCNAction customActionWithDuration:duration actionBlock:^(SCNNode * _Nonnull node, CGFloat elapsedTime){
