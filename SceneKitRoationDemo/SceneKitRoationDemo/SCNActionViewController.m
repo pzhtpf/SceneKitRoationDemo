@@ -43,10 +43,7 @@
     
     // place the camera
     cameraNode.position = SCNVector3Make(0, 0, 15);
-    
-    // retrieve the ship node
-    SCNNode *ship = [scene.rootNode childNodeWithName:@"ship" recursively:YES];
-    [ship setHidden:YES];
+    cameraNode.camera.zFar = 200;
     
     // set the scene to the view
     _scnView.scene = scene;
@@ -73,7 +70,7 @@
     [_earthGroupNode addChildNode:_earthNode];
 //    [_earthGroupNode addChildNode:_moonNode];
     
-    _earthGroupNode.position = SCNVector3Make(10, 0, 0);
+    _earthGroupNode.position = SCNVector3Make(10,0, 0);
     
     [_scnView.scene.rootNode addChildNode:_sunNode];
 //    [_sunNode addChildNode:_earthGroupNode];
@@ -127,8 +124,41 @@
     [earthRotationNode addChildNode:_earthGroupNode];
     [earthRotationNode runAction:[SCNAction repeatActionForever:[SCNAction rotateByX:0 y:1 z:0 duration:1]]];   //地月系统绕着太阳转
 
+    // retrieve the ship node
+    SCNNode *ship = [_scnView.scene.rootNode childNodeWithName:@"ship" recursively:YES];
+    ship.scale = SCNVector3Make(0.2, 0.2, 0.2);
+    ship.position = SCNVector3Make(5,5, 0);
+    
+    ship.eulerAngles = SCNVector3Make(0,0, -M_PI/4);
+    ship.geometry.firstMaterial.lightingModelName = SCNLightingModelConstant;
+    
+    SCNNode *shipRotationNode = [SCNNode node];
+    shipRotationNode.position = SCNVector3Make(-15, -15, 0);
+    [_sunNode addChildNode:shipRotationNode];
+    
+    [shipRotationNode addChildNode:ship];
 
+    SCNAction *shipMoveAction = [SCNAction moveTo:SCNVector3Make(0,0, 0) duration:4];
+    shipMoveAction.timingMode = SCNActionTimingModeEaseOut;   //越来越慢
+    
+    
+    SCNAction *shipRotationAction =[SCNAction repeatActionForever:[SCNAction rotateByAngle:-2 aroundAxis:SCNVector3Make(-5, 5, 0) duration:4]];
+    
+    SCNAction *sequenceAction = [SCNAction sequence:@[shipMoveAction,shipRotationAction]];  //顺序执行Action
+    
+    [shipRotationNode runAction:sequenceAction];
+    
     [self addAnimationToSun];
+//    [self addParticleSystem];
+}
+-(void)addParticleSystem{
+
+    SCNNode *ship = [_scnView.scene.rootNode childNodeWithName:@"ship" recursively:YES];
+    SCNNode *shipMesh = [ship childNodeWithName:@"shipMesh" recursively:YES];
+
+    SCNNode *emitter = [shipMesh childNodeWithName:@"emitter" recursively:YES];
+    SCNParticleSystem *ps = [SCNParticleSystem particleSystemNamed:@"reactor.scnp" inDirectory:@"art.scnassets/particles"];
+    [emitter addParticleSystem:ps];
 }
 -(void)addAnimationToSun{
     

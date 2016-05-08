@@ -136,6 +136,7 @@
     moonRotationAnimation.repeatCount = FLT_MAX;
     [moonRotationNode addAnimation:animation forKey:@"moon rotation around earth"];
     
+
     [_earthGroupNode addChildNode:moonRotationNode];
     
     
