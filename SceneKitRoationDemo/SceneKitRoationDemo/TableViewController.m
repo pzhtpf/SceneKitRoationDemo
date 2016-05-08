@@ -19,7 +19,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    _data = @[NSLocalizedString(@"normalRoation", @"正常旋转"),NSLocalizedString(@"mathRoation", @"数学方法旋转")];
+    _data = @[NSLocalizedString(@"normalRoation", @"正常旋转"),NSLocalizedString(@"mathRoation", @"数学方法旋转"),NSLocalizedString(@"SCNActionRoation", @"SCNAction 旋转")];
     
     _tableView.delegate = self;
     _tableView.dataSource = self;
@@ -56,8 +56,13 @@
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 
+    if(indexPath.row==0 || indexPath.row ==1)
+    
     [self performSegueWithIdentifier:@"goToGame" sender:@(indexPath.row)];
 
+    else
+         [self performSegueWithIdentifier:@"goToSCNAction" sender:@(indexPath.row)];
+    
 }
 
 /*

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BA4B6ACA1CDEEA5100128890 /* SCNActionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA4B6AC91CDEEA5100128890 /* SCNActionViewController.m */; };
+		BA4B6ACD1CDEEB7500128890 /* close.png in Resources */ = {isa = PBXBuildFile; fileRef = BA4B6ACC1CDEEB7500128890 /* close.png */; };
 		BA861AC71CDB5380009C0EBC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BA861AC61CDB5380009C0EBC /* main.m */; };
 		BA861ACA1CDB5380009C0EBC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BA861AC91CDB5380009C0EBC /* AppDelegate.m */; };
 		BA861ACC1CDB5380009C0EBC /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = BA861ACB1CDB5380009C0EBC /* art.scnassets */; };
@@ -19,6 +21,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		BA4B6AC81CDEEA5100128890 /* SCNActionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCNActionViewController.h; sourceTree = "<group>"; };
+		BA4B6AC91CDEEA5100128890 /* SCNActionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCNActionViewController.m; sourceTree = "<group>"; };
+		BA4B6ACC1CDEEB7500128890 /* close.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = close.png; sourceTree = "<group>"; };
 		BA861AC21CDB5380009C0EBC /* SceneKitRoationDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SceneKitRoationDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA861AC61CDB5380009C0EBC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		BA861AC81CDB5380009C0EBC /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -50,6 +55,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BA4B6ACB1CDEEB6800128890 /* images */ = {
+			isa = PBXGroup;
+			children = (
+				BA4B6ACC1CDEEB7500128890 /* close.png */,
+			);
+			path = images;
+			sourceTree = "<group>";
+		};
 		BA861AB91CDB5380009C0EBC = {
 			isa = PBXGroup;
 			children = (
@@ -74,6 +87,8 @@
 				BA861ACB1CDB5380009C0EBC /* art.scnassets */,
 				BA861ACD1CDB5380009C0EBC /* GameViewController.h */,
 				BA861ACE1CDB5380009C0EBC /* GameViewController.m */,
+				BA4B6AC81CDEEA5100128890 /* SCNActionViewController.h */,
+				BA4B6AC91CDEEA5100128890 /* SCNActionViewController.m */,
 				BAA2FF551CDC4BC60004E1B6 /* TableViewController.h */,
 				BAA2FF561CDC4BC60004E1B6 /* TableViewController.m */,
 				BA861AD01CDB5380009C0EBC /* Main.storyboard */,
@@ -89,6 +104,7 @@
 		BA861AC51CDB5380009C0EBC /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				BA4B6ACB1CDEEB6800128890 /* images */,
 				BA861AC61CDB5380009C0EBC /* main.m */,
 			);
 			name = "Supporting Files";
@@ -152,6 +168,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BA4B6ACD1CDEEB7500128890 /* close.png in Resources */,
 				BAA2FF5E1CDC538B0004E1B6 /* Localizable.strings in Resources */,
 				BA861ACC1CDB5380009C0EBC /* art.scnassets in Resources */,
 				BA861AD71CDB5380009C0EBC /* LaunchScreen.storyboard in Resources */,
@@ -169,6 +186,7 @@
 			files = (
 				BA861ACA1CDB5380009C0EBC /* AppDelegate.m in Sources */,
 				BA861ACF1CDB5380009C0EBC /* GameViewController.m in Sources */,
+				BA4B6ACA1CDEEA5100128890 /* SCNActionViewController.m in Sources */,
 				BA861AC71CDB5380009C0EBC /* main.m in Sources */,
 				BAA2FF571CDC4BC60004E1B6 /* TableViewController.m in Sources */,
 			);

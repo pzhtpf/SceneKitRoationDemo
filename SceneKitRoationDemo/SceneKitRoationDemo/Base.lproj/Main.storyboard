@@ -26,11 +26,41 @@
                     <connections>
                         <outlet property="tableView" destination="PRb-DO-0Ge" id="rk9-sh-nhN"/>
                         <segue destination="BV1-FR-VrT" kind="modal" identifier="goToGame" id="iob-Fe-jmL"/>
+                        <segue destination="kaj-cM-o9r" kind="modal" identifier="goToSCNAction" id="6Ff-JC-rlh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hX1-Hx-lM4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-444" y="382"/>
+        </scene>
+        <!--Action View Controller-->
+        <scene sceneID="m0z-cM-OpW">
+            <objects>
+                <viewController id="kaj-cM-o9r" customClass="SCNActionViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="kiP-Ec-O15">
+                        <rect key="frame" x="0.0" y="0.0" width="736" height="414"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="BZ4-jc-QNR">
+                                <rect key="frame" x="25" y="17" width="36" height="36"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="close.png"/>
+                                <connections>
+                                    <action selector="closeAction:" destination="kaj-cM-o9r" eventType="touchUpInside" id="BLw-rA-3Ef"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
+                    <connections>
+                        <outlet property="closeButton" destination="BZ4-jc-QNR" id="5JV-P6-ZB9"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Tjk-rV-ajq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="379" y="-84"/>
         </scene>
         <!--Game View Controller-->
         <scene sceneID="tXr-a1-R10">
@@ -49,4 +79,7 @@
             <point key="canvasLocation" x="379.73333333333335" y="382.45333333333332"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="close.png" width="36" height="36"/>
+    </resources>
 </document>
