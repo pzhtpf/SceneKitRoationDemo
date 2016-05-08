@@ -19,7 +19,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    _data = @[NSLocalizedString(@"normalRoation", @"正常旋转"),NSLocalizedString(@"mathRoation", @"数学方法旋转"),NSLocalizedString(@"SCNActionRoation", @"SCNAction 旋转")];
+    _data = @[NSLocalizedString(@"normalRotation", @"正常旋转"),NSLocalizedString(@"mathRotation", @"数学方法旋转"),NSLocalizedString(@"SCNActionRotation", @"SCNAction 旋转")];
     
     _tableView.delegate = self;
     _tableView.dataSource = self;
@@ -63,6 +63,12 @@
     else
          [self performSegueWithIdentifier:@"goToSCNAction" sender:@(indexPath.row)];
     
+    
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        
+        [_tableView deselectRowAtIndexPath:indexPath animated:YES];
+    });
 }
 
 /*

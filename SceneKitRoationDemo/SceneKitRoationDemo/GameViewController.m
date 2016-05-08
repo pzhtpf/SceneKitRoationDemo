@@ -32,20 +32,6 @@
     // place the camera
     cameraNode.position = SCNVector3Make(0, 0, 15);
     
-//    // create and add a light to the scene
-//    SCNNode *lightNode = [SCNNode node];
-//    lightNode.light = [SCNLight light];
-//    lightNode.light.type = SCNLightTypeOmni;
-//    lightNode.position = SCNVector3Make(0, 10, 10);
-//    [scene.rootNode addChildNode:lightNode];
-//    
-//    // create and add an ambient light to the scene
-//    SCNNode *ambientLightNode = [SCNNode node];
-//    ambientLightNode.light = [SCNLight light];
-//    ambientLightNode.light.type = SCNLightTypeAmbient;
-//    ambientLightNode.light.color = [UIColor darkGrayColor];
-//    [scene.rootNode addChildNode:ambientLightNode];
-    
     // retrieve the ship node
     SCNNode *ship = [scene.rootNode childNodeWithName:@"ship" recursively:YES];
     [ship setHidden:YES];
