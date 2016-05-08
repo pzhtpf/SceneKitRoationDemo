@@ -6,6 +6,6 @@
   Copyright © 2016年 tianpengfei. All rights reserved.
 */
 
-"normalRoation" = "正常旋转";
-"mathRoation" = "数学方法旋转";
-"SCNActionRoation" = "SCNAction 旋转";
+"normalRotation" = "正常旋转";
+"mathRotation" = "数学方法旋转";
+"SCNActionRotation" = "SCNAction 旋转";

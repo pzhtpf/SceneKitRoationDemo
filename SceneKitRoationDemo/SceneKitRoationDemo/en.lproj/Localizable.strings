@@ -6,6 +6,6 @@
   Copyright © 2016年 tianpengfei. All rights reserved.
 */
 
-"normalRoation" = "Normal Roation";
-"mathRoation" = "Math Roation";
-"SCNActionRoation" = "SCNAction Roation";
+"normalRotation" = "Normal Rotation";
+"mathRotation" = "Math Rotation";
+"SCNActionRotation" = "SCNAction Rotation";
