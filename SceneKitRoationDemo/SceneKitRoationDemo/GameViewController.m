@@ -10,7 +10,7 @@
 
 @interface GameViewController ()
 
-@property(strong,nonatomic)SCNNode *sunNode,*earthNode,*moonNode,*earthGroupNode;
+@property(strong,nonatomic)SCNNode *sunNode,*earthNode,*moonNode,*earthGroupNode,*sunHaloNode;
 
 @end
 
@@ -44,7 +44,9 @@
     [scene.rootNode addChildNode:cameraNode];
     
     // place the camera
-    cameraNode.position = SCNVector3Make(0, 0, 15);
+    cameraNode.position = SCNVector3Make(0,3,18);
+    cameraNode.camera.zFar = 100;
+    cameraNode.rotation =  SCNVector4Make(1, 0, 0,-M_PI_4/4);
     
     // retrieve the ship node
     SCNNode *ship = [scene.rootNode childNodeWithName:@"ship" recursively:YES];
@@ -119,7 +121,9 @@
     
     
     [self roationNode];
+    [self addOtherNode];
     [self addLight];
+  
 }
 -(void)roationNode{
 
@@ -255,10 +259,36 @@
       
         lightNode.light.color = [UIColor whiteColor]; // switch on
         //[presentationViewController updateLightingWithIntensities:@[@0.0]]; //switch off all the other lights
-//        _sunHaloNode.opacity = 0.5; // make the halo stronger
+        _sunHaloNode.opacity = 0.5; // make the halo stronger
     }
     [SCNTransaction commit];
 
+
+}
+-(void)addOtherNode{
+
+    
+    // Add a halo to the Sun (a simple textured plane that does not write to depth)
+    _sunHaloNode = [SCNNode node];
+    _sunHaloNode.geometry = [SCNPlane planeWithWidth:25 height:25];
+    _sunHaloNode.rotation = SCNVector4Make(1, 0, 0, 0 * M_PI / 180.0);
+    _sunHaloNode.geometry.firstMaterial.diffuse.contents = @"art.scnassets/earth/sun-halo.png";
+    _sunHaloNode.geometry.firstMaterial.lightingModelName = SCNLightingModelConstant; // no lighting
+    _sunHaloNode.geometry.firstMaterial.writesToDepthBuffer = NO; // do not write to depth
+    _sunHaloNode.opacity = 0.2;
+    [_sunNode addChildNode:_sunHaloNode];
+    
+
+    // Add a textured plane to represent Earth's orbit
+    SCNNode *earthOrbit = [SCNNode node];
+    earthOrbit.opacity = 0.4;
+    earthOrbit.geometry = [SCNPlane planeWithWidth:21 height:21];
+    earthOrbit.geometry.firstMaterial.diffuse.contents = @"art.scnassets/earth/orbit.png";
+    earthOrbit.geometry.firstMaterial.diffuse.mipFilter = SCNFilterModeLinear;
+    earthOrbit.rotation = SCNVector4Make(1, 0, 0,-M_PI_2);
+    earthOrbit.geometry.firstMaterial.lightingModelName = SCNLightingModelConstant; // no lighting
+    [_sunNode addChildNode:earthOrbit];
+    
 
 }
 
