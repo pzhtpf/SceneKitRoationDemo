@@ -70,7 +70,7 @@
     [_earthGroupNode addChildNode:_earthNode];
 //    [_earthGroupNode addChildNode:_moonNode];
     
-    _earthGroupNode.position = SCNVector3Make(140,0, 0);
+    _earthGroupNode.position = SCNVector3Make(120,0, 0);
     
     [_scnView.scene.rootNode addChildNode:_sunNode];
 //    [_sunNode addChildNode:_earthGroupNode];
