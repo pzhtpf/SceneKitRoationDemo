@@ -264,12 +264,10 @@
 
 - (void) handleTap:(UIGestureRecognizer*)gestureRecognize
 {
-    // retrieve the SCNView
-    SCNView *scnView = (SCNView *)self.view;
     
     // check what nodes are tapped
-    CGPoint p = [gestureRecognize locationInView:scnView];
-    NSArray *hitResults = [scnView hitTest:p options:nil];
+    CGPoint p = [gestureRecognize locationInView:_scnView];
+    NSArray *hitResults = [_scnView hitTest:p options:nil];
     
     // check that we clicked on at least one object
     if([hitResults count] > 0){
