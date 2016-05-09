@@ -42,8 +42,8 @@
     [scene.rootNode addChildNode:cameraNode];
     
     // place the camera
-    cameraNode.position = SCNVector3Make(0, 0, 15);
-    cameraNode.camera.zFar = 200;
+    cameraNode.position = SCNVector3Make(0, 0,200);
+    cameraNode.camera.zFar = 2000;
     
     // set the scene to the view
     _scnView.scene = scene;
@@ -62,15 +62,15 @@
     _moonNode = [SCNNode new];
     _earthGroupNode = [SCNNode new];
     
-    _sunNode.geometry = [SCNSphere sphereWithRadius:2.5];
-    _earthNode.geometry = [SCNSphere sphereWithRadius:1.0];
-    _moonNode.geometry = [SCNSphere sphereWithRadius:0.5];
+    _sunNode.geometry = [SCNSphere sphereWithRadius:34.0];
+    _earthNode.geometry = [SCNSphere sphereWithRadius:14.0];
+    _moonNode.geometry = [SCNSphere sphereWithRadius:7.0];
     
-    _moonNode.position = SCNVector3Make(3, 0, 0);
+    _moonNode.position = SCNVector3Make(42, 0, 0);
     [_earthGroupNode addChildNode:_earthNode];
 //    [_earthGroupNode addChildNode:_moonNode];
     
-    _earthGroupNode.position = SCNVector3Make(10,0, 0);
+    _earthGroupNode.position = SCNVector3Make(140,0, 0);
     
     [_scnView.scene.rootNode addChildNode:_sunNode];
 //    [_sunNode addChildNode:_earthGroupNode];
@@ -126,14 +126,14 @@
 
     // retrieve the ship node
     SCNNode *ship = [_scnView.scene.rootNode childNodeWithName:@"ship" recursively:YES];
-    ship.scale = SCNVector3Make(0.2, 0.2, 0.2);
-    ship.position = SCNVector3Make(5,5, 0);
+    ship.scale = SCNVector3Make(2, 2, 2);
+    ship.position = SCNVector3Make(70,70, 0);
     
     ship.eulerAngles = SCNVector3Make(0,0, -M_PI/4);
     ship.geometry.firstMaterial.lightingModelName = SCNLightingModelConstant;
     
     SCNNode *shipRotationNode = [SCNNode node];
-    shipRotationNode.position = SCNVector3Make(-15, -15, 0);
+    shipRotationNode.position = SCNVector3Make(-210, -210, 0);
     [_sunNode addChildNode:shipRotationNode];
     
     [shipRotationNode addChildNode:ship];
@@ -149,7 +149,7 @@
     [shipRotationNode runAction:sequenceAction];
     
     [self addAnimationToSun];
-//    [self addParticleSystem];
+    [self addParticleSystem];
 }
 -(void)addParticleSystem{
 
@@ -159,6 +159,7 @@
     SCNNode *emitter = [shipMesh childNodeWithName:@"emitter" recursively:YES];
     SCNParticleSystem *ps = [SCNParticleSystem particleSystemNamed:@"reactor.scnp" inDirectory:@"art.scnassets/particles"];
     [emitter addParticleSystem:ps];
+    
 }
 -(void)addAnimationToSun{
     
@@ -186,10 +187,11 @@
     lightNode.light = [SCNLight light];
     lightNode.light.color = [UIColor blackColor]; // initially switched off
     lightNode.light.type = SCNLightTypeOmni;
+    lightNode.light.zFar = 200;
     [_sunNode addChildNode:lightNode];
     
     // Configure attenuation distances because we don't want to light the floor
-    lightNode.light.attenuationEndDistance = 20.0;
+    lightNode.light.attenuationEndDistance = 2000.0;
     lightNode.light.attenuationStartDistance = 19.5;
     
     // Animation
