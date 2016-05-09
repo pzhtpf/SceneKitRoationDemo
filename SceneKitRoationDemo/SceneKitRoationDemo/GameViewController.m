@@ -11,7 +11,6 @@
 @interface GameViewController ()
 
 @property(strong,nonatomic)SCNNode *sunNode,*earthNode,*moonNode,*earthGroupNode;
-@property(strong,nonatomic)SCNView *scnView ;
 
 @end
 
@@ -21,9 +20,24 @@
 {
     [super viewDidLoad];
 
+}
+-(void)viewWillLayoutSubviews{
+    
+    if(!_scnView){
+        
+        _scnView = [[SCNView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+        
+        [self.view insertSubview:_scnView belowSubview:_closeButton];
+        
+        [self initScene];
+    }
+    
+}
+-(void)initScene{
+
     // create a new scene
     SCNScene *scene = [SCNScene sceneNamed:@"art.scnassets/ship.scn"];
-
+    
     // create and add a camera to the scene
     SCNNode *cameraNode = [SCNNode node];
     cameraNode.camera = [SCNCamera camera];
@@ -36,21 +50,15 @@
     SCNNode *ship = [scene.rootNode childNodeWithName:@"ship" recursively:YES];
     [ship setHidden:YES];
     
-    // animate the 3d object
-    [ship runAction:[SCNAction repeatActionForever:[SCNAction rotateByX:0 y:2 z:0 duration:1]]];
-    
-    // retrieve the SCNView
-    _scnView = (SCNView *)self.view;
-    
     // set the scene to the view
     _scnView.scene = scene;
     
     // allows the user to manipulate the camera
-    _scnView.allowsCameraControl = YES;
-        
+    // _scnView.allowsCameraControl = YES;
+    
     // show statistics such as fps and timing information
     _scnView.showsStatistics = YES;
-
+    
     // configure the view
     _scnView.backgroundColor = [UIColor blackColor];
     
@@ -63,6 +71,7 @@
     
     
     [self initNode];
+
 }
 
 -(void)initNode{
@@ -131,7 +140,7 @@
     
     // Rotate the moon around the Earth
     CABasicAnimation *moonRotationAnimation = [CABasicAnimation animationWithKeyPath:@"rotation"];
-    moonRotationAnimation.duration = 1.5;
+    moonRotationAnimation.duration = 5.0;
     moonRotationAnimation.toValue = [NSValue valueWithSCNVector4:SCNVector4Make(0, 1, 0, M_PI * 2)];
     moonRotationAnimation.repeatCount = FLT_MAX;
     [moonRotationNode addAnimation:animation forKey:@"moon rotation around earth"];
@@ -314,4 +323,8 @@
     // Release any cached data, images, etc that aren't in use.
 }
 
+- (IBAction)closeAction:(id)sender {
+    
+    [self dismissViewControllerAnimated:YES completion:^(){}];
+}
 @end

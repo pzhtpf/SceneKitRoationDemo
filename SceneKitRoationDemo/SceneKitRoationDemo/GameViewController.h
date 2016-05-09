@@ -10,7 +10,10 @@
 #import <SceneKit/SceneKit.h>
 
 @interface GameViewController : UIViewController
+@property (weak, nonatomic) IBOutlet UIButton *closeButton;
+- (IBAction)closeAction:(id)sender;
 
 @property(nonatomic)int type;
 
+@property(strong,nonatomic)SCNView *scnView;
 @end

@@ -9,3 +9,4 @@
 "normalRotation" = "正常旋转";
 "mathRotation" = "数学方法旋转";
 "SCNActionRotation" = "SCNAction 旋转";
+"rotationDemo" = "旋转 示例代码";

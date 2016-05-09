@@ -11,6 +11,8 @@
 
 @interface TableViewController ()
 @property(strong,nonatomic)NSArray *data;
+@property (weak, nonatomic) IBOutlet UILabel *rotationDemoLabel;
+
 @end
 
 @implementation TableViewController
@@ -18,6 +20,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    _rotationDemoLabel.text = NSLocalizedString(@"rotationDemo",@"旋转 示例代码");
     
     _data = @[NSLocalizedString(@"normalRotation", @"正常旋转"),NSLocalizedString(@"mathRotation", @"数学方法旋转"),NSLocalizedString(@"SCNActionRotation", @"SCNAction 旋转")];
     
