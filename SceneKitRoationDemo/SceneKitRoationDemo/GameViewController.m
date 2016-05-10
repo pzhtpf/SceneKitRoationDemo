@@ -268,6 +268,16 @@
 -(void)addOtherNode{
 
     
+    SCNNode *cloudsNode = [SCNNode node];
+    cloudsNode.geometry = [SCNSphere sphereWithRadius:1.15];
+    
+    [_earthNode addChildNode:cloudsNode];
+    
+    cloudsNode.opacity = 0.5;
+    // This effect can also be achieved with an image with some transparency set as the contents of the 'diffuse' property
+    cloudsNode.geometry.firstMaterial.transparent.contents = @"art.scnassets/earth/cloudsTransparency.png";
+    cloudsNode.geometry.firstMaterial.transparencyMode = SCNTransparencyModeRGBZero;
+    
     // Add a halo to the Sun (a simple textured plane that does not write to depth)
     _sunHaloNode = [SCNNode node];
     _sunHaloNode.geometry = [SCNPlane planeWithWidth:25 height:25];
