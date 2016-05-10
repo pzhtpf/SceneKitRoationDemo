@@ -9,7 +9,7 @@
 #import "SCNActionViewController.h"
 
 @interface SCNActionViewController ()
-@property(strong,nonatomic)SCNNode *sunNode,*earthNode,*moonNode,*earthGroupNode;
+@property(strong,nonatomic)SCNNode *sunNode,*earthNode,*moonNode,*earthGroupNode,*sunHaloNode;
 @end
 
 @implementation SCNActionViewController
@@ -42,8 +42,9 @@
     [scene.rootNode addChildNode:cameraNode];
     
     // place the camera
-    cameraNode.position = SCNVector3Make(0, 0,200);
+    cameraNode.position = SCNVector3Make(0, 50,250);
     cameraNode.camera.zFar = 2000;
+    cameraNode.rotation =  SCNVector4Make(1, 0, 0,-M_PI_4/4);
     
     // set the scene to the view
     _scnView.scene = scene;
@@ -51,6 +52,7 @@
     // configure the view
     _scnView.backgroundColor = [UIColor blackColor];
     
+//    _scnView.allowsCameraControl = YES;
     
     [self initNode];
 
@@ -70,7 +72,7 @@
     [_earthGroupNode addChildNode:_earthNode];
 //    [_earthGroupNode addChildNode:_moonNode];
     
-    _earthGroupNode.position = SCNVector3Make(120,0, 0);
+    _earthGroupNode.position = SCNVector3Make(140,0, 0);
     
     [_scnView.scene.rootNode addChildNode:_sunNode];
 //    [_sunNode addChildNode:_earthGroupNode];
@@ -102,6 +104,7 @@
     
     
     [self roationNode];
+    [self addOtherNode];
     [self addLight];
 }
 -(void)roationNode{
@@ -124,7 +127,7 @@
     [earthRotationNode addChildNode:_earthGroupNode];
     [earthRotationNode runAction:[SCNAction repeatActionForever:[SCNAction rotateByX:0 y:1 z:0 duration:1]]];   //地月系统绕着太阳转
 
-    // retrieve the ship node
+    // 添加飞船
     SCNNode *ship = [_scnView.scene.rootNode childNodeWithName:@"ship" recursively:YES];
     ship.scale = SCNVector3Make(2, 2, 2);
     ship.position = SCNVector3Make(70,70, 0);
@@ -179,6 +182,55 @@
     [_sunNode.geometry.firstMaterial.multiply addAnimation:animation forKey:@"sun-texture2"];
     
 }
+-(void)addOtherNode{
+    
+    
+    SCNNode *cloudsNode = [SCNNode node];
+    cloudsNode.geometry = [SCNSphere sphereWithRadius:16.0];
+    
+    [_earthNode addChildNode:cloudsNode];
+    
+    cloudsNode.opacity = 0.5;
+    // This effect can also be achieved with an image with some transparency set as the contents of the 'diffuse' property
+    cloudsNode.geometry.firstMaterial.transparent.contents = @"art.scnassets/earth/cloudsTransparency.png";
+    cloudsNode.geometry.firstMaterial.transparencyMode = SCNTransparencyModeRGBZero;
+    
+    // Add a halo to the Sun (a simple textured plane that does not write to depth)
+    _sunHaloNode = [SCNNode node];
+    _sunHaloNode.geometry = [SCNPlane planeWithWidth:300 height:300];
+    _sunHaloNode.rotation = SCNVector4Make(1, 0, 0, 0 * M_PI / 180.0);
+    _sunHaloNode.geometry.firstMaterial.diffuse.contents = @"art.scnassets/earth/sun-halo.png";
+    _sunHaloNode.geometry.firstMaterial.lightingModelName = SCNLightingModelConstant; // no lighting
+    _sunHaloNode.geometry.firstMaterial.writesToDepthBuffer = NO; // do not write to depth
+    _sunHaloNode.opacity = 0.2;
+    [_sunNode addChildNode:_sunHaloNode];
+    
+    
+    // Add a textured plane to represent Earth's orbit
+    SCNNode *earthOrbit = [SCNNode node];
+    earthOrbit.opacity = 0.4;
+    earthOrbit.geometry = [SCNPlane planeWithWidth:280 height:280];
+    earthOrbit.geometry.firstMaterial.diffuse.contents = @"art.scnassets/earth/orbit.png";
+    earthOrbit.geometry.firstMaterial.diffuse.mipFilter = SCNFilterModeLinear;
+    earthOrbit.rotation = SCNVector4Make(1, 0, 0,-M_PI_2);
+    earthOrbit.geometry.firstMaterial.lightingModelName = SCNLightingModelConstant; // no lighting
+    [_sunNode addChildNode:earthOrbit];
+    
+    
+//    // Add a textured plane to represent ship's orbit
+//    SCNNode *shipOrbit = [SCNNode node];
+//    shipOrbit.opacity = 0.4;
+//    shipOrbit.geometry = [SCNPlane planeWithWidth:140 height:140];
+//    shipOrbit.geometry.firstMaterial.diffuse.contents = @"art.scnassets/earth/orbit.png";
+////    shipOrbit.geometry.firstMaterial.diffuse.contents = [UIColor redColor];
+//    shipOrbit.geometry.firstMaterial.diffuse.mipFilter = SCNFilterModeLinear;
+//    shipOrbit.eulerAngles = SCNVector3Make(M_PI_4, M_PI_2, shipOrbit.eulerAngles.z);
+//    shipOrbit.geometry.firstMaterial.lightingModelName = SCNLightingModelConstant; // no lighting
+//    [_sunNode addChildNode:shipOrbit];
+    
+    
+}
+
 -(void)addLight{
     
     // We will turn off all the lights in the scene and add a new light
@@ -201,7 +253,7 @@
         
         lightNode.light.color = [UIColor whiteColor]; // switch on
         //[presentationViewController updateLightingWithIntensities:@[@0.0]]; //switch off all the other lights
-        //        _sunHaloNode.opacity = 0.5; // make the halo stronger
+        _sunHaloNode.opacity = 0.5; // make the halo stronger
     }
     [SCNTransaction commit];
     
